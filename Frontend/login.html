@@ -180,6 +180,9 @@
 
     <script>
         // Show/Hide Form Functions
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:5002' 
+            : 'https://socialite-three.vercel.app';
         function showAdminLogin() {
             document.getElementById('adminLoginForm').style.display = 'block';
             document.getElementById('mainButtons').style.display = 'none';
@@ -211,7 +214,7 @@
             const errorElement = document.getElementById('adminError');
 
             try {
-                const response = await fetch('http://localhost:5002/api/auth/admin-login', {
+                const response = await fetch('${API_BASE_URL}/api/auth/admin-login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -242,7 +245,7 @@
             const errorElement = document.getElementById('memberError');
 
             try {
-                const response = await fetch('http://localhost:5002/api/auth/login', {
+                const response = await fetch('${API_BASE_URL}/api/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
