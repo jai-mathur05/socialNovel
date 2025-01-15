@@ -25,7 +25,11 @@ const upload = multer({ storage });
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+// Add specific CORS configuration
+app.use(cors({
+    origin: ['https://your-vercel-domain.vercel.app', 'http://localhost:5002'],
+    credentials: true
+}));
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.use('/uploads', express.static('uploads'));
 
